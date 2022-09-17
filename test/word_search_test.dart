@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:test/test.dart';
 
-import '../lib/word_search.dart';
+import '../lib/word_search_safety.dart';
 
 void main() {
   test('should create error on empty word list', () {
-    final WordSearch wordSearch = WordSearch();
+    final WordSearchSafety wordSearch = WordSearchSafety();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       [],
       WSSettings(width: 0, height: 0),
@@ -15,7 +15,7 @@ void main() {
     expect(newPuzzle.puzzle, equals(null));
   });
   test('should create new puzzle', () {
-    final WordSearch wordSearch = WordSearch();
+    final WordSearchSafety wordSearch = WordSearchSafety();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       ['hello', 'world'],
       WSSettings(
@@ -27,7 +27,7 @@ void main() {
     expect(newPuzzle.puzzle, isNot(equals(null)));
   });
   test('should create error while trying to fit words in smaller grid', () {
-    final WordSearch wordSearch = WordSearch();
+    final WordSearchSafety wordSearch = WordSearchSafety();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       ['hello', 'world', 'random', 'number', 'alexander'],
       WSSettings(
@@ -51,7 +51,7 @@ void main() {
   test('should fill empty spaces with custom fill function', () {
     final randomLetters = [];
     randomLetters.addAll('!@#\$%^&*()-+/'.split(''));
-    final WordSearch wordSearch = WordSearch();
+    final WordSearchSafety wordSearch = WordSearchSafety();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       ['hello', 'world'],
       WSSettings(
@@ -66,7 +66,7 @@ void main() {
     print(newPuzzle.toString());
   });
   test('should fill empty spaces with custom fill string', () {
-    final WordSearch wordSearch = WordSearch();
+    final WordSearchSafety wordSearch = WordSearchSafety();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       ['hello', 'world'],
       WSSettings(
@@ -81,7 +81,7 @@ void main() {
   });
 
   test('should return error if all custom fill lettters are used up', () {
-    final WordSearch wordSearch = WordSearch();
+    final WordSearchSafety wordSearch = WordSearchSafety();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       ['hello', 'world'],
       WSSettings(
@@ -96,7 +96,7 @@ void main() {
   });
 
   test('should solve created puzzle', () {
-    final WordSearch wordSearch = WordSearch();
+    final WordSearchSafety wordSearch = WordSearchSafety();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       ['hello', 'world'],
       WSSettings(height: 0, width: 0),

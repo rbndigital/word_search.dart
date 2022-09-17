@@ -1,4 +1,4 @@
-import 'package:word_search/word_search.dart';
+import 'package:word_search_safety/word_search_safety.dart';
 
 /**
  * The main file to test out the word search library
@@ -21,7 +21,7 @@ void main() {
   );
 
   // Create new instance of the WordSearch class
-  final WordSearch wordSearch = WordSearch();
+  final WordSearchSafety wordSearch = WordSearchSafety();
 
   // Create a new puzzle
   final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(wl, ws);

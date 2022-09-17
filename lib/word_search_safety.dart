@@ -8,7 +8,7 @@ export 'src/utils.dart';
 
 /// The Word Search puzzle class
 ///
-class WordSearch {
+class WordSearchSafety {
   /// The definition of the orientation, calculates the next square given a
   /// starting square (x,y) and distance (i) from that square.
   final orientations = wsOrientations;
@@ -296,8 +296,8 @@ class WordSearch {
   /// ```
   /// final List<String> wl = ['hello', 'world', 'foo', 'bar', 'baz', 'dart'];
   /// final WSSettings ws = WSSettings();
-  /// final WordSearch wordSearch = WordSearch();
-  /// final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(wl, ws);
+  /// final WordSearchSafety WordSearchSafety = WordSearchSafety();
+  /// final WSNewPuzzle newPuzzle = WordSearchSafety.newPuzzle(wl, ws);
   /// print(newPuzzle.puzzle);
   /// ```
   ///
@@ -416,9 +416,9 @@ class WordSearch {
   /// ```
   /// final List<String> wl = ['hello', 'world', 'foo', 'bar', 'baz', 'dart'];
   /// final WSSettings ws = WSSettings();
-  /// final WordSearch wordSearch = WordSearch();
-  /// final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(wl, ws);
-  /// final WSSolved solved = wordSearch.solvePuzzle(newPuzzle.puzzle, ['dart']);
+  /// final WordSearchSafety WordSearchSafety = WordSearchSafety();
+  /// final WSNewPuzzle newPuzzle = WordSearchSafety.newPuzzle(wl, ws);
+  /// final WSSolved solved = WordSearchSafety.solvePuzzle(newPuzzle.puzzle, ['dart']);
   /// // Outputs found and not found words
   /// ```
   ///
