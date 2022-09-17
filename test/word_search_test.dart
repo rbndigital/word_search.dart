@@ -9,7 +9,7 @@ void main() {
     final WordSearch wordSearch = WordSearch();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       [],
-      WSSettings(),
+      WSSettings(width: 0, height: 0),
     );
     expect(newPuzzle.errors, equals(['Zero words provided']));
     expect(newPuzzle.puzzle, equals(null));
@@ -75,7 +75,7 @@ void main() {
         fillBlanks: '123456789!@#\$%^&*()-+=_{}|/?><',
       ),
     );
-    expect(newPuzzle.warnings.length, isNot(equals(0)));
+    expect(newPuzzle.warnings!.length, isNot(equals(0)));
     expect(newPuzzle.puzzle, isNot(equals(null)));
     print(newPuzzle.toString());
   });
@@ -91,7 +91,7 @@ void main() {
         allowExtraBlanks: false,
       ),
     );
-    expect(newPuzzle.errors.length, isNot(equals(0)));
+    expect(newPuzzle.errors!.length, isNot(equals(0)));
     expect(newPuzzle.puzzle, equals(null));
   });
 
@@ -99,10 +99,11 @@ void main() {
     final WordSearch wordSearch = WordSearch();
     final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(
       ['hello', 'world'],
-      WSSettings(),
+      WSSettings(height: 0, width: 0),
     );
-    WSSolved solved = wordSearch.solvePuzzle(newPuzzle.puzzle, ['hello', 'world', 'test']);
-    expect(solved.found.length, equals(2));
-    expect(solved.notFound.length, equals(1));
+    WSSolved solved =
+        wordSearch.solvePuzzle(newPuzzle.puzzle!, ['hello', 'world', 'test']);
+    expect(solved.found!.length, equals(2));
+    expect(solved.notFound!.length, equals(1));
   });
 }

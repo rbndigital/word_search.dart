@@ -32,7 +32,7 @@ class WordSearch {
   ///
   /// Returns either a valid puzzle with all of the words or null if a valid
   /// puzzle was not found.
-  List<List<String>> _fillPuzzle(
+  List<List<String>>? _fillPuzzle(
     /// The list of words to fit into the puzzle
     List<String> words,
 
@@ -41,9 +41,9 @@ class WordSearch {
   ) {
     final List<List<String>> puzzle = [];
     // initialize the puzzle with blanks
-    for (var i = 0; i < options.height; i++) {
+    for (var i = 0; i < options.height!; i++) {
       puzzle.add([]);
-      for (var j = 0; j < options.width; j++) {
+      for (var j = 0; j < options.width!; j++) {
         puzzle[i].add('');
       }
     }
@@ -89,7 +89,7 @@ class WordSearch {
       word,
       sel.x,
       sel.y,
-      orientations[sel.orientation],
+      orientations[sel.orientation]!,
     );
     return true;
   }
@@ -112,8 +112,8 @@ class WordSearch {
     String word,
   ) {
     List<WSLocation> locations = [];
-    int height = options.height;
-    int width = options.width;
+    int height = options.height!;
+    int width = options.width!;
     int wordLength = word.length;
     // we'll start looking at overlap = 0
     int maxOverlap = 0;
@@ -121,9 +121,9 @@ class WordSearch {
     // loop through all of the possible orientations at this position
     for (var i = 0; i < options.orientations.length; i++) {
       final WSOrientation orientation = options.orientations[i];
-      final WSOrientationFn next = orientations[orientation];
-      final WSCheckOrientationFn check = _checkOrientations[orientation];
-      final WSOrientationFn skip = _skipOrientations[orientation];
+      final WSOrientationFn next = orientations[orientation]!;
+      final WSCheckOrientationFn check = _checkOrientations[orientation]!;
+      final WSOrientationFn skip = _skipOrientations[orientation]!;
       int x = 0;
       int y = 0;
       // loop through every position on the board
@@ -197,7 +197,7 @@ class WordSearch {
     // traverse the squares to determine if the word fits
     for (var i = 0; i < word.length; i++) {
       final WSPosition next = fnGetSquare(x, y, i);
-      String square;
+      String? square;
       try {
         square = puzzle[next.y][next.x];
       } catch (_e) {
@@ -311,10 +311,10 @@ class WordSearch {
     // New instance of the output data
     WSNewPuzzle output = WSNewPuzzle();
     if (words.isEmpty) {
-      output.errors.add('Zero words provided');
+      output.errors!.add('Zero words provided');
       return output;
     }
-    List<List<String>> puzzle;
+    List<List<String>>? puzzle;
     int attempts = 0;
     int gridGrowths = 0;
 
@@ -348,7 +348,7 @@ class WordSearch {
         gridGrowths += 1;
         // No more grid growths allowed
         if (gridGrowths > options.maxGridGrowth) {
-          output.errors.add(
+          output.errors!.add(
             'No valid ${options.width}x${options.height} grid found and not allowed to grow more',
           );
           return output;
@@ -389,17 +389,17 @@ class WordSearch {
       extraLettersCount = _fillBlanks(puzzle, extraLetterGenerator);
       // Warn the user that some letters were not used
       if (lettersToAdd.isNotEmpty) {
-        output.warnings
+        output.warnings!
             .add('Some extra letters provided were not used: ${lettersToAdd}');
       }
       // Extra letters not filled in the grid if allow blanks is false
       if (fillingBlanksCount > 0 && !options.allowExtraBlanks) {
-        output.errors.add(
+        output.errors!.add(
             '${fillingBlanksCount} extra letters were missing to fill the grid');
         return output;
       }
       gridFillPercent =
-          100 * (1 - extraLettersCount / (options.width * options.height));
+          100 * (1 - extraLettersCount / (options.width * options.height!));
       print('Blanks filled with ${extraLettersCount} random letters');
       print('Final grid is filled at ${gridFillPercent.toStringAsFixed(0)}%');
     }
@@ -441,9 +441,9 @@ class WordSearch {
       List<WSLocation> locations = _findBestLocations(puzzle, options, word);
       if (locations.isNotEmpty && locations[0].overlap == word.length) {
         locations[0].word = word;
-        output.found.add(locations[0]);
+        output.found!.add(locations[0]);
       } else {
-        output.notFound.add(word);
+        output.notFound!.add(word);
       }
     }
     // Return the output
