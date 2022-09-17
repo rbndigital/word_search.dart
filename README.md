@@ -25,7 +25,7 @@ void main() {
   );
 
   // Create new instance of the WordSearch class
-  final WordSearch wordSearch = WordSearch();
+  final WordSearchSafety wordSearch = WordSearchSafety();
 
   // Create a new puzzle
   final WSNewPuzzle newPuzzle = wordSearch.newPuzzle(wl, ws);

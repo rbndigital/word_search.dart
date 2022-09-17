@@ -41,9 +41,9 @@ class WordSearchSafety {
   ) {
     final List<List<String>> puzzle = [];
     // initialize the puzzle with blanks
-    for (var i = 0; i < options.height!; i++) {
+    for (var i = 0; i < options.height; i++) {
       puzzle.add([]);
-      for (var j = 0; j < options.width!; j++) {
+      for (var j = 0; j < options.width; j++) {
         puzzle[i].add('');
       }
     }
@@ -112,8 +112,8 @@ class WordSearchSafety {
     String word,
   ) {
     List<WSLocation> locations = [];
-    int height = options.height!;
-    int width = options.width!;
+    int height = options.height;
+    int width = options.width;
     int wordLength = word.length;
     // we'll start looking at overlap = 0
     int maxOverlap = 0;
@@ -399,7 +399,7 @@ class WordSearchSafety {
         return output;
       }
       gridFillPercent =
-          100 * (1 - extraLettersCount / (options.width * options.height!));
+          100 * (1 - extraLettersCount / (options.width * options.height));
       print('Blanks filled with ${extraLettersCount} random letters');
       print('Final grid is filled at ${gridFillPercent.toStringAsFixed(0)}%');
     }
