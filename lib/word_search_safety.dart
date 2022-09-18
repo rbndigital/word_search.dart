@@ -326,11 +326,11 @@ class WordSearchSafety {
         return b.length - a.length;
       });
     // max word length
-    final maxWordLength = wordList.first.length;
+    //final maxWordLength = wordList.first.length;
     // create new options instance of the settings
     final WSSettings options = WSSettings(
-      width: settings.width != null ? settings.width : maxWordLength,
-      height: settings.height != null ? settings.height : maxWordLength,
+      width: settings.width,
+      height: settings.height,
       orientations: settings.orientations,
       fillBlanks: settings.fillBlanks ?? true,
       maxAttempts: settings.maxAttempts,
